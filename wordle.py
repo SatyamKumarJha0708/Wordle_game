@@ -1,11 +1,10 @@
-# CODE YOUR OWN WORDLE IN 60 SECONDS
-# import your modules
 import random
 import pygame
 import words
 pygame.init()
 
-# create screen, fonts, colors, game variables
+# creating screen, fonts, colors, game variables
+
 white = (255, 255, 255)
 black = (0, 0, 0)
 green = (0, 255, 0)
@@ -31,7 +30,7 @@ game_over = False
 letters = 0
 turn_active = True
 
-# create routine for drawing the board
+# creating routine for drawing the board
 
 def draw_board():
     global turn
@@ -43,7 +42,7 @@ def draw_board():
             screen.blit(piece_text, (col * 100 + 30, row * 100 + 25))
     pygame.draw.rect(screen, green, [5, turn * 100 + 5, WIDTH - 10, 90], 3, 5)
 
-# create routine for checking letters
+# creating routine for checking letters
 
 def check_words():
     global turn
@@ -57,7 +56,7 @@ def check_words():
                 pygame.draw.rect(screen, yellow, [col * 100 + 12, row * 100 + 12, 75, 75], 0, 5)
 
 
-# set up your main game loop
+# setting up main game loop
 
 running = True
 while running:
@@ -69,7 +68,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-# add player controls for letter entry, backspacing, checking guesses and restarting
+# adding player controls for letter entry, backspacing, checking guesses and restarting
 
         if event.type == pygame.TEXTINPUT and turn_active and not game_over:
                 entry = event.__getattribute__('text')
@@ -96,13 +95,14 @@ while running:
                          [" ", " ", " ", " ", " "],
                          [" ", " ", " ", " ", " "]]
 
-        # control turn active based on letters
+        # controling turn active based on letters
+
         if letters == 5:
             turn_active = False
         if letters < 5:
             turn_active = True
 
-        # check if guess is correct, add game over conditions
+        # checkiing if guess is correct, add game over conditions
 
         for row in range(0, 6):
             guess = board[row][0] + board[row][1] + board[row][2] + board[row][3] + board[row][4]
